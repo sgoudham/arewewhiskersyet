@@ -6,14 +6,14 @@ const dela = Dela_Gothic_One({ fallback: ['system-ui'], weight: ["400"], subsets
 
 export const metadata: Metadata = {
   title: 'Are We Whiskers Yet?',
-  description: 'Tracking the adoption of whiskers, the port creation tool for Catppuccin',
+  description: 'Tracking the adoption of whiskers, a work-in-progress port creation tool for Catppuccin',
   keywords: ["Whiskers", "Handlebars", "Helper", "Catppuccin", "Tool"],
   metadataBase: new URL("https://arewewhiskersyet.com"),
   openGraph: {
     url: "https://arewewhiskersyet.com",
     title: "Are We Whiskers Yet?",
     description:
-      "Tracking the adoption of whiskers, the port creation tool for Catppuccin",
+      "Tracking the adoption of whiskers, a work-in-progress port creation tool for Catppuccin",
     locale: "en_GB",
   },
   twitter: {

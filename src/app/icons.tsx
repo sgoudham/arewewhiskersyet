@@ -1,4 +1,3 @@
-
 export const CrossCircle = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
