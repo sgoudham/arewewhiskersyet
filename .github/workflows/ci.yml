@@ -2,6 +2,8 @@ name: Build & Deploy
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
   push:
     branches: [main]
 
@@ -27,10 +29,6 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
 
       - run: yarn install --immutable
