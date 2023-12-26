@@ -1,7 +1,6 @@
 import { throttling } from "@octokit/plugin-throttling";
 import { Octokit } from "@octokit/rest";
-import { cache } from "react";
-const fs = require("node:fs");
+import { ApiCustomProperties, CustomProperty, FullRepoData, RepoData } from "./types";
 
 const org = "catppuccin";
 
@@ -34,44 +33,25 @@ const octokit = new MyOctokit({
   },
 });
 
-type ApiCustomProperties = {
-  response: ApiCustomProperty[];
+const fetchCustomProperties = async (
+  repo: RepoData
+): Promise<ApiCustomProperties> => {
+  return await octokit
+    .request(`GET /repos/catppuccin/${repo.name}/properties/values`, {
+      owner: org,
+      repo: repo.name,
+      headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+      },
+    })
+    .then((response) => {
+      return {
+        response: response.data,
+      };
+    });
 };
 
-type ApiCustomProperty = {
-  property_name: string;
-  value: string | null;
-};
-
-type RepoData = {
-  name: string;
-  description: string | null;
-  html_url: string;
-};
-
-export type FullRepoData = RepoData & {
-  whiskers: boolean;
-};
-
-const fetchCustomProperties = cache(
-  async (repo: RepoData): Promise<ApiCustomProperties> => {
-    return await octokit
-      .request(`GET /repos/catppuccin/${repo.name}/properties/values`, {
-        owner: org,
-        repo: repo.name,
-        headers: {
-          "X-GitHub-Api-Version": "2022-11-28",
-        },
-      })
-      .then((response) => {
-        return {
-          response: response.data,
-        };
-      });
-  }
-);
-
-const fetchPublicRepos = cache(async (): Promise<RepoData[]> => {
+const fetchPublicRepos = async (): Promise<RepoData[]> => {
   return await octokit
     .paginate(octokit.rest.repos.listForOrg, {
       org,
@@ -82,14 +62,14 @@ const fetchPublicRepos = cache(async (): Promise<RepoData[]> => {
       return repos.map((repo) => {
         return {
           name: repo.name,
-          description: repo.description,
+          isArchived: repo.archived,
           html_url: repo.html_url,
         };
       });
     });
-});
+};
 
-export const fetchRepos = cache(async (): Promise<FullRepoData[]> => {
+export const fetchRepos = async (): Promise<FullRepoData[]> => {
   let repos: FullRepoData[] = [];
 
   if (process.env.NODE_ENV === "development") {
@@ -102,16 +82,29 @@ export const fetchRepos = cache(async (): Promise<FullRepoData[]> => {
   } else {
     console.log("fetching from github");
     try {
-      const publicRepos = await fetchPublicRepos();
+      const publicRepos = (await fetchPublicRepos()).filter(
+        (repo) => !repo.isArchived
+      );
       repos = await Promise.all(
         publicRepos.map(async (repo) => {
           const properties = await fetchCustomProperties(repo);
           const found = properties.response.find(
             (e) => e.property_name === "whiskers"
           );
+
+          let whiskers = CustomProperty.FALSE;
+          if (found) {
+            if (found.value === "true") {
+              whiskers = CustomProperty.TRUE;
+            }
+            if (found.value === "not_applicable") {
+              whiskers = CustomProperty.NOT_APPLICABLE;
+            }
+          }
+
           return {
             ...repo,
-            whiskers: found ? (found.value === "true" ? true : false) : false,
+            whiskers,
           };
         })
       );
@@ -120,5 +113,16 @@ export const fetchRepos = cache(async (): Promise<FullRepoData[]> => {
     }
   }
 
+  // console.log("saving data to `response.json`");
+  // await fs.writeFile(
+  //   "./src/app/lib/response.json",
+  //   JSON.stringify(repos, null, 2),
+  //   function (err: any) {
+  //     if (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // );
+
   return repos;
-});
+};

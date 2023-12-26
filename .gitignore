@@ -37,4 +37,4 @@ yarn-error.log*
 next-env.d.ts
 
 # local file
-src/app/response.json
+src/app/lib/response.json
