@@ -14,7 +14,15 @@ export const Description = async () => {
           target="_blank"
           href="https://github.com/catppuccin/toolbox/tree/main/whiskers">whiskers
         </Link>
-        , a work-in-progress port creation tool for Catppuccin.
+        , an awesome port creation tool for Catppuccin.
+      </p>
+      <p>Designed by the amazing{" "}
+        <Link
+          className="underline decoration-solid decoration-blue decoration-2 text-blue"
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://github.com/backwardspy">pigeon
+        </Link>.
       </p>
     </div>
   )
