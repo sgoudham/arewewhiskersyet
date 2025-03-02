@@ -8,7 +8,7 @@ const Column = ({ repos, property, title, gradient, icon, }: { repos: FullRepoDa
   let filteredRepos = repos.filter((repo) => repo.whiskers === property);
   return (
     <div className="flex flex-col space-y-2">
-      <h2 className={`text-xl lg:text-2xl xl:text-3xl basis-auto text-transparent bg-clip-text bg-gradient-to-r ${gradient}`}>
+      <h2 className={`text-xl lg:text-2xl xl:text-3xl basis-auto text-transparent bg-clip-text bg-linear-to-r ${gradient}`}>
         {title} ({filteredRepos.length})
       </h2>
       <div className="flex flex-col text-md lg:text-lg xl:text-2xl">
