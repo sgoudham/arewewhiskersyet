@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dela.className} latte dark:mocha bg-base text-text flex flex-col py-5`}
+        className={`${dela.className} bg-ctp-base text-ctp-text flex flex-col py-5`}
       >
         {children}
       </body>

@@ -1,6 +1,6 @@
 export const ExternalLink = (props: React.SVGProps<SVGSVGElement>) => {
   return <svg
-    className="h-4 lg:h-5 xl:h-6 align-text-top fill-text opacity-50"
+    className="h-4 lg:h-5 xl:h-6 align-text-top fill-ctp-text opacity-50"
     xmlns="http://www.w3.org/2000/svg"
     width="32"
     height="32"

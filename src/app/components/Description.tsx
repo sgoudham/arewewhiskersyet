@@ -9,7 +9,7 @@ export const Description = async () => {
       <p>
         This website is tracking the adoption of{" "}
         <Link
-          className="underline decoration-solid decoration-blue decoration-2 text-blue"
+          className="underline decoration-solid decoration-2 text-ctp-blue"
           rel="noopener noreferrer"
           target="_blank"
           href="https://github.com/catppuccin/toolbox/tree/main/whiskers">whiskers
@@ -18,7 +18,7 @@ export const Description = async () => {
       </p>
       <p>Designed by the amazing{" "}
         <Link
-          className="underline decoration-solid decoration-blue decoration-2 text-blue"
+          className="underline decoration-solid decoration-2 text-ctp-blue"
           rel="noopener noreferrer"
           target="_blank"
           href="https://github.com/backwardspy">pigeon

@@ -24,16 +24,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: yarn
+          cache: pnpm
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
         with:
           static_site_generator: next
 
-      - run: yarn install --immutable
+      - run: pnpm install
 
-      - run: yarn build
+      - run: pnpm build
         env:
           WHISKERS_GITHUB_TOKEN: ${{ secrets.WHISKERS_GITHUB_TOKEN }}
 
