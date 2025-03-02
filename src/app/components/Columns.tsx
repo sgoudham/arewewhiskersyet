@@ -26,9 +26,9 @@ export const Columns = async () => {
   const repos = (await fetchRepos()).sort((a, b) => a.name.localeCompare(b.name));
   return (
     <div className="w-full flex flex-col text-center space-y-4 px-4 lg:flex-row-reverse lg:space-y-0 lg:items-start lg:px-0">
-      <Column repos={repos} property={CustomProperty.TRUE} title="Yup" gradient="from-green to-green-600" icon={<CheckCircle className="justify-self-start text-green h-8" />} />
-      <Column repos={repos} property={CustomProperty.FALSE} title="Nope" gradient="from-red to-maroon" icon={<CrossCircle className="justify-self-start text-red h-8" />} />
-      <Column repos={repos} property={CustomProperty.NOT_APPLICABLE} title="N/A" gradient="from-peach to-yellow" icon={<Confused className="justify-self-start text-peach h-8" />} />
+      <Column repos={repos} property={CustomProperty.TRUE} title="Yup" gradient="from-ctp-green-400 to-ctp-teal-600" icon={<CheckCircle className="justify-self-start text-ctp-green h-8" />} />
+      <Column repos={repos} property={CustomProperty.FALSE} title="Nope" gradient="from-ctp-red-400 to-ctp-maroon-600" icon={<CrossCircle className="justify-self-start text-ctp-red h-8" />} />
+      <Column repos={repos} property={CustomProperty.NOT_APPLICABLE} title="N/A" gradient="from-ctp-peach-400 to-ctp-yellow-600" icon={<Confused className="justify-self-start text-ctp-peach h-8" />} />
     </div>
   );
 }
