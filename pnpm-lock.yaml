@@ -25,8 +25,8 @@ importers:
         version: 19.0.0(react@19.0.0)
     devDependencies:
       '@catppuccin/tailwindcss':
-        specifier: 1.0.0-beta.1
-        version: 1.0.0-beta.1
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2
       '@tailwindcss/postcss':
         specifier: ^4.0.9
         version: 4.0.9
@@ -61,8 +61,8 @@ packages:
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
 
-  '@catppuccin/tailwindcss@1.0.0-beta.1':
-    resolution: {integrity: sha512-+mnOXw8JAT0Kz+KDi0dMM16YJMTC+N0yTzOU5n3b3ibUQFv4DQTVPYAx+P7iKfSwG+5w4gZ4+kupQQHKkcXnFg==}
+  '@catppuccin/tailwindcss@1.0.0-beta.2':
+    resolution: {integrity: sha512-vHTQo068gBmzpAttRQYcdVFSRRjku8bfVrP10binNzpwiw/kNwSAXGpr7HiLynzC3KaNXjhGSVkMkmtrXEoKdg==}
     engines: {node: '>=22.0.0'}
 
   '@emnapi/runtime@1.3.1':
@@ -1679,7 +1679,7 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@catppuccin/tailwindcss@1.0.0-beta.1': {}
+  '@catppuccin/tailwindcss@1.0.0-beta.2': {}
 
   '@emnapi/runtime@1.3.1':
     dependencies:
